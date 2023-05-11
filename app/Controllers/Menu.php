@@ -6,7 +6,6 @@ use App\Models\MenuModel;
 
 class Menu extends BaseController
 {
-
     public function index()
     {
         return view('welcome_message');
@@ -24,16 +23,17 @@ class Menu extends BaseController
             'active_menu' => 'nav-list-kendaraan'
         );
 
-        // $this->menuModel = new MenuModel();
+        $menuModel = new MenuModel();
+        $menuModel->getListVehicle();
         // $menuModel = $this->menuModel->getListVehicle();
 
-        $db = db_connect();
-        $query = "CALL `getAllKendaraan`();";
-        $login = $db->query($query);
-        $db->close();
-        $menuModel = $login->getResult();
+        // $db = db_connect();
+        // $query = "CALL `getAllKendaraan`();";
+        // $login = $db->query($query);
+        // $db->close();
+        // $menuModel = $login->getResult();
 
-        $list['data_kendaraan'] = $menuModel;
+        $list['data_kendaraan'] = $menuModel->getListVehicle();
 
         echo view('template/header', $data);
         echo view('menu/list-kendaraan', $list);

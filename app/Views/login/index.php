@@ -95,6 +95,18 @@
         $(document).ready(function() {
             console.log("ready!");
 
+            $("#login-username").keypress(function(e) {
+                if (e.which == 13) {
+                    $("#btn-login").click();
+                }
+            });
+
+            $("#login-password").keypress(function(e) {
+                if (e.which == 13) {
+                    $("#btn-login").click();
+                }
+            });
+
             $('#btn-login').click(function() {
                 var username = $('#login-username').val();
                 var password = $('#login-password').val();

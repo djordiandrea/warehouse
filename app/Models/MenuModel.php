@@ -10,10 +10,16 @@ class MenuModel extends Model
 
     public function getListVehicle()
     {
+        // $db = db_connect();
+        // $query = "SELECT * FROM mst_list_vehicle";
+        // $getData = $db->query($query);
+        // $db->close();
+        // return $getData->getResult();
+
         $db = db_connect();
-        $query = "SELECT * FROM mst_list_vehicle";
-        $login = $db->query($query);
+        $query = "CALL `getAllKendaraan`();";
+        $getData = $db->query($query);
         $db->close();
-        return $login->getResult();
+        return $getData->getResult();
     }
 }
