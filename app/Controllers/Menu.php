@@ -24,8 +24,14 @@ class Menu extends BaseController
             'active_menu' => 'nav-list-kendaraan'
         );
 
-        $this->menuModel = new MenuModel();
-        $menuModel = $this->menuModel->getListVehicle();
+        // $this->menuModel = new MenuModel();
+        // $menuModel = $this->menuModel->getListVehicle();
+
+        $db = db_connect();
+        $query = "CALL `getAllKendaraan`();";
+        $login = $db->query($query);
+        $db->close();
+        $menuModel = $login->getResult();
 
         $list['data_kendaraan'] = $menuModel;
 

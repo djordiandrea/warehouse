@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 21, 2022 at 03:39 AM
+-- Generation Time: May 11, 2023 at 10:39 PM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 8.0.5
 
@@ -20,6 +20,23 @@ SET time_zone = "+00:00";
 --
 -- Database: `warehouse`
 --
+
+DELIMITER $$
+--
+-- Procedures
+--
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getAllKendaraan` ()  BEGIN
+	SELECT *  FROM mst_list_vehicle;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getUserLogin` (IN `username` VARCHAR(255), IN `pw` VARCHAR(255))  BEGIN
+	SELECT * 
+ 	FROM mst_user a
+	WHERE a.mus_username = username
+    AND a.mus_password = pw;
+END$$
+
+DELIMITER ;
 
 -- --------------------------------------------------------
 

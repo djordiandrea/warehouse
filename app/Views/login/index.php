@@ -116,8 +116,6 @@
                         window.location = base_url + result['url'];
                     }
 
-
-
                 });
             });
         });

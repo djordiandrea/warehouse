@@ -18,20 +18,20 @@ class Login extends BaseController
     public function submitLogin()
     {
         $session = session();
-
-        ob_start();
-        system('getmac');
-        $Content = ob_get_contents();
-        ob_clean();
-        $mac = substr($Content, strpos($Content, '\\') - 20, 17);
-
         $data_login = [];
 
         $username = $this->request->getPost('username');
         $password = $this->request->getPost('password');
 
-        $this->loginModel = new LoginModel();
-        $loginModel = $this->loginModel->getLoginData($username, $password, $mac);
+        // $this->loginModel = new LoginModel();
+        // $loginModel = $this->loginModel->getLoginData($username, $password, $mac);
+
+        $db = db_connect();
+        // $query = "SELECT * FROM mst_user where mus_username = '" . $username . "' and mus_password = '" . $password . "' ";
+        $query = "CALL `getUserLogin`('" . $username . "', '" . $password . "');";
+        $login = $db->query($query);
+        $db->close();
+        $loginModel = $login->getResult();
 
         if (sizeof($loginModel) > 0) {
             $session = session();
